@@ -22,6 +22,12 @@ const mockPins: MemoryPin[] = [
     { id: 3, x: 62, y: 48, title: "Colosseum", type: 'photo', content: "Early morning tour. Breathtaking scale." },
 ];
 
+const sweetSpots = [
+    { id: 101, x: 35, y: 25, title: "The Keyhole of Aventine", tip: "Look through to see St. Peter's perfectly framed." },
+    { id: 102, x: 58, y: 35, title: "Church of Santa Maria della Pace", tip: "Hidden Raphael frescoes without the crowds." },
+    { id: 103, x: 48, y: 65, title: "The Orange Garden", tip: "Most romantic sunset view of the city skyline." }
+];
+
 export default function TreasureMap() {
     const [selectedPin, setSelectedPin] = useState<MemoryPin | null>(null);
     const [pins, setPins] = useState<MemoryPin[]>([]);
@@ -124,6 +130,26 @@ export default function TreasureMap() {
                     </motion.button>
                 ))}
 
+                {/* Sweet Spots */}
+                {sweetSpots.map((spot) => (
+                    <motion.button
+                        key={spot.id}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        whileHover={{ scale: 1.2, rotate: 10 }}
+                        onClick={() => setSelectedPin({ ...spot, type: 'note', content: spot.tip } as MemoryPin)}
+                        style={{ left: `${spot.x}%`, top: `${spot.y}%` }}
+                        className="absolute -translate-x-1/2 -translate-y-1/2 z-30 group"
+                    >
+                        <div className="relative">
+                            <div className="absolute -inset-2 bg-pop-yellow/40 rounded-full blur-md group-hover:bg-pop-yellow/60 transition-colors" />
+                            <div className="relative bg-pop-yellow text-pop-espresso p-2 md:p-2.5 rounded-lg shadow-lg border-2 border-pop-espresso rotate-3 group-hover:rotate-0 transition-all">
+                                <Star className="w-3 h-3 md:w-4 md:h-4 fill-current" />
+                            </div>
+                        </div>
+                    </motion.button>
+                ))}
+
 
                 {/* Decorative Sun */}
                 <motion.div
@@ -140,6 +166,10 @@ export default function TreasureMap() {
                     <div className="flex items-center space-x-3 mb-1">
                         <div className="w-4 h-4 bg-pop-pink rounded-sm border-2 border-pop-espresso" />
                         <span className="text-[10px] font-bold uppercase text-pop-espresso tracking-widest">Memory</span>
+                    </div>
+                    <div className="flex items-center space-x-3 mb-1">
+                        <div className="w-4 h-4 bg-pop-yellow rounded-sm border-2 border-pop-espresso" />
+                        <span className="text-[10px] font-bold uppercase text-pop-espresso tracking-widest">Sweet Spot</span>
                     </div>
                     <div className="flex items-center space-x-3">
                         <div className="w-4 h-4 bg-pop-orange rounded-sm border-2 border-pop-espresso" />

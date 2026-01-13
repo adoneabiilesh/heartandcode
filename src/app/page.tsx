@@ -4,17 +4,15 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MemoryAuth from "@/components/MemoryAuth";
 import MemoryVault from "@/components/MemoryVault";
-import PerksSection from "@/components/PerksSection";
 import ActivationFlow from "@/components/ActivationFlow";
 import TreasureMap from "@/components/TreasureMap";
-import Store from "@/components/Store"; // Added import
-import AdminDashboard from "@/components/AdminDashboard"; // Added import
-import { Heart, Gift, BookOpen, LogOut, Map as MapIcon, Lock, Camera, MapPin, ArrowRight, ShoppingBag, Settings } from "lucide-react"; // Updated import
+import AdminDashboard from "@/components/AdminDashboard";
+import { BookOpen, LogOut, Map as MapIcon, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/lib/supabase";
 
 
-type View = "activate" | "login" | "vault" | "map" | "perks" | "store" | "admin"; // Updated type
+type View = "activate" | "login" | "vault" | "map" | "admin";
 
 
 export default function Home() {
@@ -118,7 +116,7 @@ export default function Home() {
 
           {/* Centered Navigation Items */}
           <div className="flex-1 flex justify-center items-center space-x-1 sm:space-x-4">
-            {(["vault", "map", "perks", "store"] as const).map((v) => (
+            {(["vault", "map"] as const).map((v) => (
               <button
                 key={v}
                 disabled={view === "login" || view === "activate"}
@@ -132,10 +130,7 @@ export default function Home() {
                 )}
               >
                 <div className="flex flex-col md:flex-row items-center md:space-x-2">
-                  {v === "vault" ? <BookOpen className="w-4 h-4" /> :
-                    v === "map" ? <MapIcon className="w-4 h-4" /> :
-                      v === "perks" ? <Gift className="w-4 h-4" /> :
-                        <ShoppingBag className="w-4 h-4" />} {/* Updated icon logic */}
+                  {v === "vault" ? <BookOpen className="w-4 h-4" /> : <MapIcon className="w-4 h-4" />}
                   <span className="hidden md:inline">{v}</span>
                 </div>
               </button>
@@ -225,29 +220,6 @@ export default function Home() {
           )}
 
 
-          {view === "perks" && (
-            <motion.div
-              key="perks"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              className="w-full"
-            >
-              <PerksSection />
-            </motion.div>
-          )}
-
-          {view === "store" && ( // Added store view
-            <motion.div
-              key="store"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              className="w-full"
-            >
-              <Store />
-            </motion.div>
-          )}
 
           {view === "admin" && ( // Added admin view
             <motion.div
