@@ -91,7 +91,6 @@ export default function Home() {
             {errorMsg && (
               <div className="bg-red-50 border-2 border-red-500 p-4 rounded-xl max-w-xs text-center">
                 <p className="text-red-600 font-bold text-sm italic">{errorMsg}</p>
-                <p className="text-xs text-pop-espresso/40 mt-2 font-black uppercase">Check Supabase RLS Policies</p>
               </div>
             )}
           </motion.div>

@@ -219,7 +219,7 @@ export default function ActivationFlow({ tagId, onComplete }: ActivationFlowProp
                             <div className="space-y-2">
                                 <h2 className="text-3xl serif-font font-bold text-sepia-900 italic">Success!</h2>
                                 <p className="text-sepia-500 text-sm leading-relaxed">
-                                    Your Roman journey is now connected. You can now save memories and claim perks across the city.
+                                    Your Roman journey is now connected. You can now save personal memories and discover sweet spots across the city.
                                 </p>
                             </div>
                             <button
